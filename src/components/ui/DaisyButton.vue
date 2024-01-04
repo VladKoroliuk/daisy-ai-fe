@@ -19,7 +19,7 @@ const props = defineProps({
 })
 </script>
 <template>
-  <button :class="props.classList" :disabled="props.disabled || props.loading">
+  <button :class="props.classList">
     <template v-if="!props.loading">
       <slot name="icon-start"></slot>
       {{ props.label }}
