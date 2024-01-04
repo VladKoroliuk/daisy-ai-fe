@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --vt-c-black: #d8d8d8;
+  /* --vt-c-black: #181818; */
+  --text-color: #0e0a13;
+  --navigation-height: 300px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(228, 228, 235);
+  border-radius: 20px;
+}
+
+a {
+  transition: 0.3s;
+}
+
+h2 {
+  font-size: 24px;
+}

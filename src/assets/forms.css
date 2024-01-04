@@ -1,0 +1,29 @@
+.form-page {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.form-block {
+  width: 400px;
+}
+
+.form-block h2 {
+  margin-bottom: 40px;
+}
+
+.form-block > form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-block__bottom-links {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.error-msg {
+  color: rgb(214, 51, 51);
+}

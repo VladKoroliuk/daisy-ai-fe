@@ -1,0 +1,136 @@
+@import './base.css';
+
+.app-container {
+  padding: 10px;
+  padding-top: 30px;
+  padding-right: 50px;
+  display: flex;
+}
+
+/* NAVIGATION */
+
+.app-navigation {
+  width: var(--navigation-height);
+  padding-left: 30px;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 100px);
+}
+
+.app-navigation > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-right: 30px;
+}
+.app-navigation > ul > li:first-child {
+  margin-bottom: 20px;
+}
+
+.app-navigation__footer {
+  width: 220px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation-item > a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  width: 230px;
+  border-radius: 5px;
+  color: var(--text-color);
+  font-size: 18px;
+}
+
+.navigation-item > a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* CONTENT */
+
+.content-container {
+  width: calc(100% - var(--navigation-height));
+  min-height: calc(100vh - 100px);
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  /* background: rgb(241, 241, 241); */
+  border: 1px solid rgb(241, 241, 241);
+  box-shadow: rgba(223, 225, 226, 0.2) 0px 8px 24px;
+}
+
+.chat {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 0;
+}
+
+.chat__content {
+  display: grid;
+  grid-template-rows: 1fr 140px;
+  grid-template-columns: 1fr;
+  height: 100%;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.chat__line {
+  overflow-y: scroll;
+  max-height: 80vh;
+}
+
+.chat__header {
+  height: 50px;
+  width: 100%;
+}
+.chat__controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+}
+
+.message-input-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.message-input-block > textarea {
+  border-radius: 10px;
+}
+
+.message-item {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.message-item__avatar-block > div {
+  /* width: 35px;
+  height: 35px;
+  background: red;
+  border-radius: 50%; */
+}
+
+.message-item__content-block {
+  width: 100%;
+}
+
+.message-item__content-block > p {
+  max-width: 70%;
+}
+
+.loading-screen {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
