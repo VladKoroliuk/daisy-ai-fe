@@ -1,3 +1,3 @@
 export default {
-  baseURL: 'http://localhost:4000/'
+  baseURL: 'daisy-ai-be-production.up.railway.app'
 }
