@@ -12,10 +12,10 @@ const router = useRouter()
 const { runAction: runSubmit, loading: submitLoading } = useLoading(onSubmit, onError)
 
 const formState = reactive({
-  email: 'example@mail.com',
-  password: 'changeme',
-  firstName: 'Vlad',
-  lastName: 'Koroliuk'
+  email: '',
+  password: '',
+  firstName: '',
+  lastName: ''
 })
 
 const formRules = computed(() => ({
