@@ -30,9 +30,18 @@ const props = defineProps({
   <template v-if="props.topicID == '659863f5d31307566051457d'">
     <img class="icon" src="../assets/icons/square.png" />
   </template>
+  <template v-if="props.topicID == '6598695bd31307566051457e'">
+    <img class="icon" src="../assets/icons/dna.png" />
+  </template>
+  <template v-if="props.topicID == '659869b2d31307566051457f'">
+    <img class="icon" src="../assets/icons/poetry.png" />
+  </template>
+  <template v-if="props.topicID == '659869c1d313075660514580'">
+    <img class="icon" src="../assets/icons/united-kingdom.png" />
+  </template>
 </template>
 <style scoped>
 .icon {
-  width: 25px;
+  width: 30px;
 }
 </style>

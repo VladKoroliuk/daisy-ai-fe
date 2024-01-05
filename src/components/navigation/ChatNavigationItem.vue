@@ -20,7 +20,7 @@ const deleteChat = (event: Event) => {
     >
       <div>
         <ChatTopicIcon :topicID="props.topicID" />
-        <span>{{ props.label }}</span>
+        <span class="chat-label">{{ props.label }}</span>
       </div>
       <button class="delete-chat-button" @click.stop="deleteChat($event)">
         <mdicon style="color: rgb(161, 161, 161)" name="delete" size="24"></mdicon>
@@ -48,5 +48,9 @@ const deleteChat = (event: Event) => {
 }
 .chat-link:hover .delete-chat-button {
   display: block;
+}
+
+.chat-label {
+  text-wrap: nowrap;
 }
 </style>
