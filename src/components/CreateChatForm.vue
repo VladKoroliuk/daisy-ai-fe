@@ -65,7 +65,7 @@ const close = () => {
         </div>
       </template>
       <template v-if="step === 1">
-        <h3 class="font-bold text-lg">Оберить тему</h3>
+        <h3 class="font-bold text-lg">Оберіть тему</h3>
         <div class="topic-items">
           <button
             v-for="topic in topicStore.topicsState"
