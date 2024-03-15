@@ -1,4 +1,3 @@
 export default {
-  baseURL: 'https://daisy-ai-be-production.up.railway.app'
+  baseURL: import.meta.env.VITE_API_URL
 }
-// 'https://daisy-ai-be-production.up.railway.app'
