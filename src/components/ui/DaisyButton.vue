@@ -14,7 +14,7 @@ const props = defineProps({
   classList: {
     type: Array,
     required: false,
-    default: () => ['btn', 'btn-primary']
+    default: () => ['btn', 'btn-success']
   }
 })
 </script>

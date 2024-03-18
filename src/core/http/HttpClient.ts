@@ -28,6 +28,14 @@ export class HttpFetch implements HttpClient {
     })
   }
 
+  public patch<T>(uri: string, body?: HttpBody): Promise<HttpResponse<T>> {
+    const url = this.createURL(uri)
+    return this.request<T>(url, {
+      method: 'PATCH',
+      body: body
+    })
+  }
+
   protected async request<T>(url: string, config: RequestOptions): Promise<HttpResponse<T>> {
     const fullConfig = this.makeFullConfig({ ...config, headers: this.headers })
     const response = await fetch(url, fullConfig as object)

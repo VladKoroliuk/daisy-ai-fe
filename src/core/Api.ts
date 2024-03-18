@@ -5,6 +5,7 @@ export interface ApplicationApi {
   post<T>(uri: string, body: HttpBody): Promise<HttpResponse<T>>
   put<T>(uri: string, body?: HttpBody): Promise<HttpResponse<T>>
   delete<T>(uri: string, params?: HttpParams): Promise<HttpResponse<T>>
+  patch<T>(uri: string, body?: HttpBody): Promise<HttpResponse<T>>
   setHeaders(headers: Headers): void
 }
 
@@ -16,7 +17,7 @@ export class Api extends HttpFetch {
   public async get<T>(uri: string, params?: HttpParams): Promise<HttpResponse<T>> {
     return await super.get<T>(uri, params)
   }
-  // Артем ❤️ Настя
+
   public async post<T>(uri: string, body: HttpBody = {}): Promise<HttpResponse<T>> {
     const serializedBody = JSON.stringify(body)
     this.headers.set('Content-Type', 'application/json')
@@ -29,6 +30,12 @@ export class Api extends HttpFetch {
 
   public async delete<T>(uri: string, params?: HttpParams): Promise<HttpResponse<T>> {
     return await super.delete<T>(uri, params)
+  }
+
+  public async patch<T>(uri: string, body?: HttpBody): Promise<HttpResponse<T>> {
+    const serializedBody = JSON.stringify(body)
+    this.headers.set('Content-Type', 'application/json')
+    return super.patch<T>(uri, serializedBody)
   }
 
   public setHeaders(headers: Headers): void {

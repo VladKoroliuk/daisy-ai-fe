@@ -30,6 +30,18 @@ const router = createRouter({
               component: ChatBody
             }
           ]
+        },
+        {
+          path: 'quiz',
+          name: 'quizzes',
+          component: () => import('@/views/QuizPage.vue'),
+          children: [
+            {
+              path: ':quizID',
+              name: 'quiz',
+              component: () => import('@/components/QuizBody.vue')
+            }
+          ]
         }
       ]
     },

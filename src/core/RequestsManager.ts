@@ -7,7 +7,13 @@ type GetRequestArgs = Parameters<ApplicationApi['get']>
 type PostRequestArgs = Parameters<ApplicationApi['post']>
 type PutRequestArgs = Parameters<ApplicationApi['put']>
 type DeleteRequestArgs = Parameters<ApplicationApi['delete']>
-type RequestArgs = GetRequestArgs | PostRequestArgs | PutRequestArgs | DeleteRequestArgs
+type PatchRequestArgs = Parameters<ApplicationApi['patch']>
+type RequestArgs =
+  | GetRequestArgs
+  | PostRequestArgs
+  | PutRequestArgs
+  | DeleteRequestArgs
+  | PatchRequestArgs
 
 export class RequestsManager {
   constructor() {
@@ -64,6 +70,8 @@ export class RequestsManager {
         return this.api.put(...(args as PutRequestArgs))
       case 'DELETE':
         return this.api.delete(...(args as DeleteRequestArgs))
+      case 'PATCH':
+        return this.api.patch(...(args as PatchRequestArgs))
       default:
         return null
     }
