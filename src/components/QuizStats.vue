@@ -168,8 +168,8 @@ const correctStat = computed(() => {
 .quiz {
   width: 900px;
   max-width: 100%;
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
+  /* max-height: calc(100vh - 100px);
+  overflow-y: auto; */
 }
 @media (max-width: 1320px) {
   .quiz {
@@ -185,11 +185,21 @@ const correctStat = computed(() => {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 40px;
 }
 .quizzes-container {
+  margin-top: 40px;
   max-height: 700px;
   overflow-y: auto;
+}
+@media (max-height: 1080px) {
+  .quizzes-container {
+    max-height: 600px;
+  }
+}
+@media (max-height: 980px) {
+  .quizzes-container {
+    max-height: 500px;
+  }
 }
 .collapse {
   background-color: rgb(241, 241, 241);
