@@ -18,5 +18,9 @@ export const useChatStore = defineStore('chat', () => {
     chatState.value.push(chat)
   }
 
-  return { chatState, setChats, setLoading, appendChat }
+  const removeChat = (chatID: string) => {
+    chatState.value = chatState.value.filter((c) => c.id !== chatID)
+  }
+
+  return { chatState, setChats, setLoading, appendChat, removeChat }
 })

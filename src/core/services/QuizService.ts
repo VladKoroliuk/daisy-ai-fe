@@ -60,6 +60,14 @@ class QuizService extends RequestsManager {
 
     return response.data
   }
+  public async deleteQuiz(id: string) {
+    const response = await this.request<Quiz>('DELETE', '/quiz/' + id)
+    if (!response) {
+      return null
+    }
+
+    return response.data
+  }
 }
 
 let quizService: null | QuizService = null

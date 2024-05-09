@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import ChatTopicIcon from '../ChatTopicIcon.vue'
-import { getChatService } from '@/core/services/ChatService'
 
 const props = defineProps<{ label: string; id: string; topicID: string }>()
-const chatService = getChatService()
+const emit = defineEmits<{
+  deleteChat: [id: string]
+}>()
 
 const deleteChat = (event: Event) => {
   event.preventDefault()
-  chatService.deleteChat(props.id)
+  // chatService.deleteChat(props.id)
+  emit('deleteChat', props.id)
 }
 </script>
 <template>

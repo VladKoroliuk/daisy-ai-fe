@@ -73,6 +73,10 @@ class ChatsService extends RequestsManager {
 
   public async deleteChat(id: string) {
     const response = await this.request<ChatProps>('DELETE', '/chat/' + id)
+    if (!response) {
+      return null
+    }
+    return response.data
   }
 }
 

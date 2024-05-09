@@ -18,5 +18,9 @@ export const useQuizStore = defineStore('quiz', () => {
     quizState.value.push(chat)
   }
 
-  return { quizState, setQuizzes, setLoading, appendQuiz }
+  const removeQuiz = (quizId: string) => {
+    quizState.value = quizState.value.filter((q) => q.id !== quizId)
+  }
+
+  return { quizState, setQuizzes, setLoading, appendQuiz, removeQuiz }
 })

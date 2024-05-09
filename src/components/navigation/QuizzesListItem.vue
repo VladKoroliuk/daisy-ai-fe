@@ -1,9 +1,17 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import type { Quiz } from '@/core/services/QuizService'
 import ChatTopicIcon from '../ChatTopicIcon.vue'
 
 const props = defineProps<{ group: Quiz[] }>()
+const emit = defineEmits<{
+  deleteQuiz: [id: string]
+}>()
+
+const deleteQuiz = (event: Event, id: string) => {
+  event.preventDefault()
+  emit('deleteQuiz', id)
+}
 </script>
 
 <template>
@@ -22,7 +30,11 @@ const props = defineProps<{ group: Quiz[] }>()
           :key="quiz.id"
           :to="{ name: 'quiz', params: { quizID: quiz.id } }"
         >
-          <a class="quiz-button">{{ quiz.subTopic }}</a>
+          <a class="quiz-button"
+            >{{ quiz.subTopic }}
+            <button class="delete-chat-button" @click.stop="deleteQuiz($event, quiz.id)">
+              <mdicon style="color: rgb(161, 161, 161)" name="delete" size="24"></mdicon></button
+          ></a>
         </RouterLink>
       </div>
     </div>
@@ -48,6 +60,11 @@ const props = defineProps<{ group: Quiz[] }>()
   border-radius: 5px;
   padding: 5px 9px;
   font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.quiz-button:hover .delete-chat-button {
+  display: block;
 }
 .quiz-button:hover {
   background-color: rgb(236, 236, 236);
