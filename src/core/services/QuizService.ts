@@ -39,6 +39,7 @@ class QuizService extends RequestsManager {
     count: number
   }) {
     const response = await this.request<Quiz>('POST', '/quiz/', payload)
+    console.log(response)
     if (!response) {
       return null
     }

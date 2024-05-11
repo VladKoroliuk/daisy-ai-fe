@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useVuelidate } from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
-import { reactive, computed } from 'vue'
+import { reactive, computed, ref } from 'vue'
 import { getAuthService } from '@/core/services/AuthService'
 import { useRouter } from 'vue-router'
 import DaisyButton from '@/components/ui/DaisyButton.vue'
@@ -10,6 +10,7 @@ import { useLoading } from '@/composables/useLoading'
 const auth = getAuthService()
 const router = useRouter()
 const { runAction: runSubmit, loading: submitLoading } = useLoading(onSubmit, onError)
+const serverError = ref('')
 
 const formState = reactive({
   email: '',
@@ -38,6 +39,7 @@ async function onSubmit(e: Event) {
 
 function onError(error: Error) {
   console.log(error.message)
+  serverError.value = error.message
 }
 </script>
 <template>
@@ -63,6 +65,7 @@ function onError(error: Error) {
           <div class="input-errors" v-for="error of v.$errors" :key="error.$uid">
             <span class="error-msg">{{ error.$message }}</span>
           </div>
+          <span class="error-msg">{{ serverError }}</span>
         </div>
         <DaisyButton label="Увійти" :loading="submitLoading"></DaisyButton>
       </form>

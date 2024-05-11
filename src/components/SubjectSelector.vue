@@ -21,7 +21,7 @@ const selectTopic = (topic: string) => {
         v-for="topic in topicStore.topicsState"
         :key="topic.id"
         @click="selectTopic(topic.id)"
-        class="bg-base-300 topic-button"
+        class="bg-base-200 topic-button"
       >
         <ChatTopicIcon :topicID="topic.id" />
         {{ topic.label }}

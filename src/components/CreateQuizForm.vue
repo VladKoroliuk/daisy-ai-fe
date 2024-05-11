@@ -39,18 +39,25 @@ const createQuiz = async (e: Event) => {
   }
 
   loading.value = true
-  const response = await quizService.createQuiz({
-    level: initialFormState.level,
-    subject: initialFormState.subject,
-    topic,
-    count: quizNumber.value
-  })
-  if (response) {
-    store.appendQuiz(response)
-    router.push({ name: 'quiz', params: { quizID: response.id } })
+  try {
+    const response = await quizService.createQuiz({
+      level: initialFormState.level,
+      subject: initialFormState.subject,
+      topic,
+      count: quizNumber.value
+    })
+
+    if (response && response.id) {
+      store.appendQuiz(response)
+      router.push({ name: 'quiz', params: { quizID: response.id } })
+    } else {
+      alert('Сталася помилка')
+    }
+    close()
+    loading.value = false
+  } catch (e) {
+    console.log(e)
   }
-  close()
-  loading.value = false
 }
 
 const close = () => {
@@ -61,43 +68,46 @@ const close = () => {
 
 <template>
   <div class="modal-box">
-    <template v-if="!loading">
-      <template v-if="step === 0">
-        <LevelSelector @select="selectEducationLevel" />
-      </template>
-      <template v-if="step === 1">
-        <SubjectSelector @select="selectSubject" />
-      </template>
-      <template v-if="step === 2">
-        <h3 class="font-bold text-lg mb-6">Тема опитування</h3>
-        <form @submit="createQuiz">
-          <input
-            id="email"
-            type="text"
-            placeholder="Введіть тему з обраного предмету"
-            value=""
-            class="input input-bordered w-full"
-            minlength="3"
-            maxlength="200"
-            name="Тема опитування"
-            required
-          /><br />
-          <h6 class="mt-4 mb-2 text-neutral-500">Кількість: {{ quizNumber }}</h6>
-          <input
-            type="range"
-            min="1"
-            max="15"
-            v-model="quizNumber"
-            class="range range-sm range-success"
-          />
-          <button type="submit" class="btn btn-success mt-3 w-full mt-5">Створити</button>
-        </form>
-      </template>
+    <template v-if="step === 0">
+      <LevelSelector @select="selectEducationLevel" />
     </template>
-    <template v-else>
+    <template v-if="step === 1">
+      <SubjectSelector @select="selectSubject" />
+    </template>
+    <template v-if="step === 2">
+      <h3 class="font-bold text-lg mb-6">Тема опитування</h3>
+      <form @submit="createQuiz">
+        <input
+          id="email"
+          type="text"
+          placeholder="Введіть тему з обраного предмету"
+          value=""
+          class="input input-bordered w-full"
+          minlength="3"
+          maxlength="200"
+          name="Тема опитування"
+          required
+          :disabled="loading"
+        /><br />
+        <h6 class="mt-4 mb-2 text-neutral-500">Кількість: {{ quizNumber }}</h6>
+        <input
+          type="range"
+          min="1"
+          max="15"
+          v-model="quizNumber"
+          class="range range-sm range-success"
+          :disabled="loading"
+        />
+        <button type="submit" class="btn btn-success mt-3 w-full mt-5" :disabled="loading">
+          <span v-if="loading" class="loading loading-spinner"></span>Створити
+        </button>
+      </form>
+    </template>
+
+    <!-- <template v-else>
       <span class="loading loading-spinner loading-xs"></span>
-    </template>
-    <button class="btn btn-circle btn-sm close-modal" @click="close">
+    </template> -->
+    <button class="btn btn-circle btn-sm close-modal" @click="close" :disabled="loading">
       <mdicon name="close" />
     </button>
   </div>

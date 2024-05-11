@@ -57,9 +57,12 @@ const close = () => {
       </template>
     </template>
     <template v-else>
-      <span class="loading loading-spinner loading-xs"></span>
+      <div class="loading-block">
+        <span class="loading loading-spinner loading-lg"></span>
+        Створюємо чат...
+      </div>
     </template>
-    <button class="btn btn-circle btn-sm close-modal" @click="close">
+    <button class="btn btn-circle btn-sm close-modal" @click="close" :disabled="loading">
       <mdicon name="close" />
     </button>
   </div>
@@ -72,5 +75,13 @@ const close = () => {
   position: absolute;
   right: 10px;
   top: 10px;
+}
+.loading-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  height: 200px;
 }
 </style>
