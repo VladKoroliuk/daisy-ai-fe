@@ -90,6 +90,13 @@ const saveTestResults = async () => {
   quizStore.setQuizzes(quizzes)
   return quiz
 }
+
+const redoTest = async () => {
+  if (currentQuizID.value) {
+    await quizService.clearOptions(currentQuizID.value)
+    window.location.reload()
+  }
+}
 </script>
 <template>
   <template v-if="!loading">
@@ -145,7 +152,7 @@ const saveTestResults = async () => {
       </template>
     </div>
     <div v-else>
-      <QuizStats v-if="currentQuiz" :quiz="currentQuiz" :answers="answers" />
+      <QuizStats v-if="currentQuiz" :quiz="currentQuiz" :answers="answers" @redo="redoTest" />
     </div>
   </template>
   <template v-else>

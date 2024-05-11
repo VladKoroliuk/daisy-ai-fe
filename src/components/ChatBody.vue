@@ -19,7 +19,7 @@ const chatService = getChatService()
 const loadChat = async (id: string) => {
   chatID.value = id
   const response = await chatService.loadChat(id)
-  messages.value = response.messages
+  messages.value = response.messages.sort((a, b) => (a.sequenceIndex || 0) - (b.sequenceIndex || 0))
   currentTopic.value = response.chatData.topicID
   nextTick(() => {
     scrollDown()
@@ -39,7 +39,8 @@ const sendMessage = async () => {
     chatID: chatID.value,
     content: message.value,
     id: String(new Date()),
-    role: 'user'
+    role: 'user',
+    sequenceIndex: null
   }
   addMessage(userMessage)
   const m = message.value

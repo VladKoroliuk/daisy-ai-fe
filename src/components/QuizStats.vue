@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { defineProps, computed } from 'vue'
+import { defineProps, computed, defineEmits } from 'vue'
 import type { Quiz } from '@/core/services/QuizService'
 
 const props = defineProps<{
   answers: Record<string, string>
   quiz: Quiz
 }>()
+const emit = defineEmits(['redo'])
 
 const getCorrectAnswerID = (sectionID: string) => {
   const section = props.quiz.sections.find((s) => s.id == sectionID)
@@ -15,7 +16,7 @@ const getCorrectAnswerID = (sectionID: string) => {
   return correctOption.id
 }
 const redo = () => {
-  alert('БУБЕ')
+  emit('redo')
 }
 
 const correctNumber = computed(() => {

@@ -68,6 +68,14 @@ class QuizService extends RequestsManager {
 
     return response.data
   }
+  public async clearOptions(quizID: string) {
+    const response = await this.request<Quiz>('POST', '/quiz/clearOptions', { quizID })
+    if (!response) {
+      return null
+    }
+
+    return response.data
+  }
 }
 
 let quizService: null | QuizService = null

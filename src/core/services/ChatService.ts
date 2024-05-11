@@ -7,6 +7,7 @@ export interface MessageProps {
   content: string
   id: string
   role: string
+  sequenceIndex: number | null
 }
 
 type ChatObject = {
